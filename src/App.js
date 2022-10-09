@@ -8,7 +8,9 @@ function App() {
   useEffect(() => {
     const getProducts = async () => {
       try {
-        const res = await fetch("/api/products/all");
+        const res = await fetch(
+          "https://ecommerce-fullstack-backend.herokuapp.com/api/products/all"
+        );
         const data = await res.json();
 
         setProducts(data);
