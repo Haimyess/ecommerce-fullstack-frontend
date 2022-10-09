@@ -8,7 +8,7 @@ function App() {
   useEffect(() => {
     const getProducts = async () => {
       try {
-        const res = await fetch("/api/products/all");
+        const res = await fetch("http://localhost:3001/api/products/all");
         const data = await res.json();
 
         setProducts(data);
