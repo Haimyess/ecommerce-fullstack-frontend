@@ -13,11 +13,13 @@ import { useParams } from "react-router-dom";
 
 // import BtnAddToCart from "../components/BtnAddToCart";
 
-function Product({ onAdd, qty }) {
+function Product({ qty }) {
   const { quantity, setQuantity } = qty;
   const [product, setProduct] = useState([]);
 
-  const { cart, setCart } = useContext(CartContext);
+  // const { cart, setCart } = useContext(CartContext);
+
+  const { handleAdd } = useContext(CartContext);
 
   const params = useParams();
 
@@ -45,7 +47,7 @@ function Product({ onAdd, qty }) {
 
   useEffect(() => {
     const getProduct = async () => {
-      const res = await fetch(`${link}/api/products/product/${params.id}`);
+      const res = await fetch(`/api/products/product/${params.id}`);
       const data = await res.json();
 
       setProduct(data);
@@ -67,7 +69,9 @@ function Product({ onAdd, qty }) {
               {/* <button onClick={() => AddToCart(singleProduct)}>
                 Add to Cart
               </button> */}
-              <button onClick={() => onAdd(singleProduct)}>Add to Cart</button>
+              <button onClick={() => handleAdd(singleProduct)}>
+                Add to Cart
+              </button>
             </div>
           </div>
         );

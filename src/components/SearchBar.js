@@ -21,7 +21,7 @@ const SearchBar = ({ searchDivRef, isOpen }) => {
   useEffect(() => {
     try {
       const getAllProducts = async () => {
-        const res = await fetch(`${link}/api/products/all`);
+        const res = await fetch("/api/products/all");
         const data = await res.json();
         setAllProducts(data);
 
