@@ -1,0 +1,156 @@
+.checkout-products {
+    display: flex;
+    justify-content: space-between;
+}
+
+.checkout-wrapper {
+    display: flex;
+    justify-content: center;
+    /* border:  3px solid red; */
+}
+
+/* .form-wrapper {
+    border:  2px solid green;
+
+} */
+
+.form-container {
+    padding: 5rem;
+    /* margin: 2rem; */
+  
+    width: 55vw;
+    /* border: 1px dotted black; */
+    
+}
+
+.summary-wrapper{
+  flex: 1;
+    /* border:  2px solid blue; */
+    
+
+}
+
+.summary-container {
+    margin: 5rem;
+    /* border: 4px solid brown; */
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    border-radius: 5px;
+
+}
+.join-container {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    width: 100%;
+
+  
+}
+
+/* .join-margin {
+    margin-left: 1rem;
+    
+} */
+
+
+
+input[type='text'], [type='email'], [type='number'], [type='password'] {
+    width: 100%;
+    background-color: #F2F2F2;
+    border: none;
+    border-radius: 5px;
+    /* box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; */
+    padding: 1rem;
+} 
+
+
+.payment-container {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+
+}
+.card-container {
+    display: flex;
+    flex-direction: row;
+    /* flex-grow: 1; */
+    /* border: 3px solid orange; */
+    width: 30%;
+    gap: 1rem;
+    
+}
+
+.margin-bot {
+    margin-bottom: 1.5rem;
+}
+
+.cardnumber-container {
+/* border: 3px solid red; */
+/* width: 75%; */
+ flex-grow: 2;
+}
+
+
+.err-val-msg {
+    
+    color: red;
+    font-size: .8rem;
+    align-self: baseline;
+    margin-bottom: 0%;
+
+}
+
+.grow-container {
+    flex: 1;
+}
+
+.checkout-btn {
+   width: 70%;
+   font-size: 1rem;
+   margin-bottom: 2rem;
+   border: none;
+   font-weight: bold;
+   border-radius: 10px;
+   padding: .6rem 0;
+   color: #fff;
+   background-color: #1363DF;
+   /* cursor: pointer; */
+}
+
+/* .input-disabled {
+    background-color: #F2F2F2;
+    color: #000;
+     width: 70%;
+   font-size: 1rem;
+   margin-bottom: 2rem;
+   border: none;
+   font-weight: bold;
+   border-radius: 10px;
+   padding: .6rem 0;
+  
+} */
+
+input[type=submit]:disabled {
+     background-color: #F2F2F2;
+    color: #000;
+    opacity: 50%;
+     width: 70%;
+   font-size: 1rem;
+   margin-bottom: 2rem;
+   border: none;
+   font-weight: bold;
+   border-radius: 10px;
+   padding: .6rem 0;
+}
+
+.checkout-btn-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+   
+}
+
+.title {
+    font-size: 2rem;
+}

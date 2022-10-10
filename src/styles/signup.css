@@ -1,0 +1,36 @@
+.signup-wrapper {
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+  height: 100vh;
+  width: 100vw;
+}
+.signup-title {
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.signup-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* .signup-sub-container {
+} */
+.signup-form-container {
+  display: flex;
+}
+.signup-form {
+  border-right: 1px solid #444;
+  padding-right: 3rem;
+}
+.signup-social-media {
+  padding-left: 3rem;
+
+  /* flex-direction: column; */
+}
+
+.signup-buttons {
+  display: flex;
+  flex-direction: column;
+}

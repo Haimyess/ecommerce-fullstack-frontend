@@ -1,0 +1,267 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0%;
+}
+
+/* .title-cat {
+    text-align: center;
+} */
+
+
+.grid-wrapper {
+    /* width: 90vw; */
+    /* height: 90vh; */
+    margin: 0 auto;
+    width: 90%;
+display: grid;
+grid-gap: 1.5rem;
+grid-template-columns: repeat(12, 1fr) ;
+
+/* media query  */
+
+/* grid-template-colums: repeat(1, 1fr) */
+/* grid-template-rows: auto */
+grid-template-rows: 200px 200px 300px;
+
+grid-template-areas: 
+/* "fruits fruits fruits fruits "
+"alcohol"; */
+
+/* media query */
+/* grid-template-areas: 
+"fruits" 
+"meat"....  */
+
+"fruits fruits fruits fruits vegetables  vegetables vegetables  grains grains grains  drinks drinks"
+"meat meat meat meat meat meat meat alcohol alcohol alcohol alcohol alcohol " 
+"vegan vegan vegan  cereals cereals cereals cereals cereals dairy dairy dairy dairy "  
+;
+
+}
+
+.grid-item {
+    background-color: aquamarine;
+    display: flex;
+    text-decoration: none;
+    justify-content: center;
+    align-items: center;
+    border-radius:  20px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* cursor: pointer; */
+   
+  
+}
+
+
+
+.title-cat {
+    color: rgba(25, 25, 25, 0.73);
+    /* color: var(--main-color); */
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: .5rem;
+
+    /* background-color: rgba(255, 255, 255, .5) ; */
+    background-color: rgba(255, 255, 255, 0.663);
+    /* opacity: 50%; */
+    border-radius: 10px;
+    border: .5px solid var(--main-color);
+}
+
+/* 
+.category-grid {
+    padding: 3rem;
+   
+    border: 1px solid #000;
+} */
+
+
+.fruits {
+    grid-area: fruits;
+    background-image: url("https://live.staticflickr.com/65535/52406585359_3b9597eb46_b.jpg")
+}
+
+.alcohol {
+    grid-area: alcohol;
+    background-image: url("https://images.unsplash.com/photo-1610371800811-a7d2a7b6b3e8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2126&q=80" );
+}
+.cereals {
+    grid-area: cereals;
+    background-image: url("https://images.unsplash.com/photo-1571748982800-fa51082c2224?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2671&q=80");
+}
+.drinks {
+    grid-area: drinks;
+    background-image: url("https://live.staticflickr.com/65535/52406800898_be8d4deb00_b.jpg");
+}
+.grains {
+    grid-area: grains;
+    background-image: url("https://images.unsplash.com/photo-1542990253-a781e04c0082?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2188&q=80");
+}
+.meat {
+    grid-area:meat ;
+    background-image: url("https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2670&q=80");
+}
+.vegan {
+    grid-area: vegan ;
+    background-image: url("https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2670&q=80");
+}
+.dairy {
+    grid-area:dairy ;
+    background-image: url('https://images.unsplash.com/photo-1628088062854-d1870b4553da?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2670&q=80');
+
+}
+.vegetables {
+    grid-area: vegetables;
+    background-image: url("https://live.staticflickr.com/65535/52406731445_f3fe505402_b.jpg");
+}
+
+/* 
+Fruits grains cereals
+    alcohol meat
+vegan dairy vegetables
+       drinks
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.category-img {
+  object-fit: contain;
+  height: 80%;
+  width: 80%;
+  /* max-width: 50%; */
+}
+
+.categories-wrapper {
+    display: flex;
+    padding: 5rem;
+    border: 2px solid red;
+    /* margin-left: 30%; */
+      
+
+}
+
+/* 
+.category-card {
+  
+    
+} */
+
+/* .main-wrapper {
+    display: flex;
+    border: 5px solid blue;
+} */
+
+.categories-filter {
+    border: 3px solid yellow;
+}
+
+
+/* ------------------------------------- */
+/* --------------CATALOGUE-------------- */
+/* ------------------------------------- */
+
+/* .catalogue-wrapper {
+   width: 90%;
+} */
+
+
+/* ------------------------------------- */
+/* --------------CATEGORY-------------- */
+/* ------------------------------------- */
+
+.category-name {
+    padding-left: 13rem;
+    margin: 1.5rem 0;
+}
+
+/* ------------------------------------- */
+/* --------------CART------------------- */
+/* ------------------------------------- */
+
+.cart-product-wrapper {
+width: 90%;
+margin: 0 auto;
+border: 1px solid red;
+display: flex;
+
+}
+
+.cart-products-container {
+
+    border: 1px solid black;
+    max-width: 60%;
+    
+}
+.cart-product {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid green;
+
+
+
+}
+
+.cart-product--img-name {
+    width: 30%;
+    
+}
+
+.cart-product--img {
+
+    max-width: 40%;
+    object-fit: contain;
+
+}
+
+/* .cart-product--price {
+    margin-left: 2rem;
+    padding-right: 2rem;
+} */
+
+.cart-wrapper-summary {
+    width: 35%;
+}
+.cart-summary {
+    /* width: 35%;
+    height: 40vh; */
+    padding-left: 2rem;
+    border: 2px solid green;
+}
+
+.cart-quantity--btns {
+    display: flex;
+    align-items: center;
+}

@@ -1,0 +1,23 @@
+
+
+
+
+.carousel-img {
+    height: 40vh;
+    object-fit: cover;
+    border-radius: 20px;
+  
+
+}
+/* 
+.slider-container {
+    width: 80vw;
+    margin: 0 auto;
+   
+   
+    
+}
+ */
+.carousel-control-prev, .carousel-control-next {
+    z-index: 0;
+}

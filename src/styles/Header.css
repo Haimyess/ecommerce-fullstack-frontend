@@ -1,0 +1,63 @@
+.logo-home {
+ 
+  text-decoration: none;
+  color: black;
+  max-width: 7vw;
+}
+
+.cart, .login-btn {
+  text-decoration: none;
+  margin-right: 1rem;
+  margin-top: .5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+/* .cart-badge {
+  color: blue;
+  font-size: 1.5rem;
+} */
+
+.navbar-fix-top {
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  width: 100vw;
+}
+
+.bottom-border {
+  border-bottom: 1px solid rgb(var(--grey3,235,235,235))
+}
+
+.cat-btn {
+  border: 1px solid #fff;
+  margin-left: 1rem;
+  padding: .6rem;
+  border-radius:12px;
+  color: #fff;
+  font-size: .9rem;
+  background-color: #1363DF;
+  font-weight: 500;
+  text-decoration: none;
+  transition: .3s;
+   /* pointer-events: inherit; */
+
+  
+}
+
+.cat-btn:hover {
+  color: #fff;
+  /* Posible color option. DONT DELETE! */
+  /* background-color: #336ec5; */
+  background-color: #093e8d;
+}
+
+/* .login-btn {
+  display: flex;
+  flex-direction: column;
+} */
+
+.color {
+  color: #1363DF;
+
+}

@@ -1,7 +1,17 @@
-.App {
+/* .App {
   text-align: center;
-}
+} */
 
+* {
+ /* font-family: 'Montserrat', sans-serif; */
+  font-family: 'Roboto', sans-serif;
+}
+.app-container {
+  
+  width: 75%;
+  margin: 0 auto;
+  padding: 6rem 0;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -27,6 +37,36 @@
 .App-link {
   color: #61dafb;
 }
+
+
+/* -------------------------------------------------- */
+/* -------------PRODUCTS COMPONENTS WRAPPER------------ */
+/* -------------------------------------------------- */
+
+/* ------------POPULAR PRODUCTS */
+/* ------------MOST VIEWED PRODUCTS */
+/* ------------RECENTLY VIEWED PRODUCTS */
+
+.products-wrapper {
+
+  display: flex;
+  justify-content: flex-start;
+  gap: 1rem;
+  /* align-items: center; */
+
+
+}
+
+.main-components-wrapper {
+  /* border: 1px solid red; */
+  height: 100%;
+  overflow: scroll;
+
+}
+
+
+
+
 
 @keyframes App-logo-spin {
   from {

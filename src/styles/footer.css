@@ -1,0 +1,11 @@
+
+
+
+.logo {
+    width: 50%;
+}
+
+.footer-title {
+    /* color: #1363DF; */
+    color: var(--main-color);
+}
