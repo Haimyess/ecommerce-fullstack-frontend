@@ -31,6 +31,7 @@ import ThanksPage from "./pages/ThanksPage";
 import "./App.css";
 // importing this file we are able to access the variables globally, in each on eof the stylesheets that we have.
 import "./styles/variables.css";
+import { CategoryProvider } from "./contexts/CategoryContext";
 
 function App() {
   const { cart, setCart } = useContext(CartContext);
@@ -101,10 +102,13 @@ function App() {
             <Route
               path='/:type'
               element={
-                <Category
-                  // onAdd={handleAdd}
-                  qty={{ quantity, setQuantity }}
-                />
+                <CategoryProvider>
+                  {" "}
+                  <Category
+                    // onAdd={handleAdd}
+                    qty={{ quantity, setQuantity }}
+                  />
+                </CategoryProvider>
               }
             />
             <Route

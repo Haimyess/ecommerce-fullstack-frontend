@@ -35,7 +35,7 @@ import {
 function Header({ qty }) {
   const { quantity, setQuantity } = qty;
 
-  console.log(quantity);
+  // console.log(quantity);
 
   //
 

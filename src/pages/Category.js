@@ -1,11 +1,12 @@
 /** @format */
 
-import { useState, useEffect, createContext, useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Link, useParams } from "react-router-dom";
 
 import { link } from "../link";
 
 import { CartContext } from "../contexts/CartContext";
+import { CategoryContext } from "../contexts/CategoryContext";
 
 import React from "react";
 // import App from "../App";
@@ -16,9 +17,8 @@ import "../styles/Category.css";
 
 import Filter from "../components/Filter";
 import ProductCard from "../components/ProductCard";
+import Sort from "../components/Sort";
 // import Cart from "./Cart";
-
-export const CatgContext = createContext();
 
 export const Category = ({ onAdd, qty }) => {
   const { quantity, setQuantity } = qty;
@@ -26,13 +26,16 @@ export const Category = ({ onAdd, qty }) => {
   const { cart, setCart } = useContext(CartContext);
   // console.log("category", cart);
   /////////////////////////////////////////////////
-  const [catgProducts, setCatgProducts] = useState([]);
-
-  const [checkBoxBrand, setCheckBoxBrand] = useState([]);
-
-  const [updatedCheckboxes, setUpdatedCheckboxes] = useState([]);
-
-  const [checkBoxType, setCheckBoxType] = useState([]);
+  const {
+    catgProducts,
+    setCatgProducts,
+    checkBoxBrand,
+    setCheckBoxBrand,
+    updatedCheckboxes,
+    setUpdatedCheckboxes,
+    checkBoxType,
+    setCheckBoxType,
+  } = useContext(CategoryContext);
 
   const [searchArray, setSearchArray] = useState([]);
 
@@ -63,7 +66,7 @@ export const Category = ({ onAdd, qty }) => {
   //   }
   // }, []);
 
-  console.log(catgProducts.length);
+  // console.log(catgProducts.length);
 
   const getProducts = async () => {
     try {
@@ -107,46 +110,19 @@ export const Category = ({ onAdd, qty }) => {
   return (
     <div>
       <h1 className='category-title'>{params.type}</h1>
-      {catgProducts.length === 0 ? "" : <p>{catgProducts.length} Products</p>}
-
+      <div className='header-category'>
+        {catgProducts.length === 0 ? "" : <p>{catgProducts.length} Products</p>}
+        <Sort />
+      </div>
       {/* <div> */}
       <div className='category-container'>
         <aside className='category-aside '>
-          <CatgContext.Provider
-            value={{
-              setCatgProducts,
-              catgProducts,
-              checkBoxBrand,
-              setCheckBoxBrand,
-              updatedCheckboxes,
-              setUpdatedCheckboxes,
-              checkBoxType,
-              setCheckBoxType,
-            }}>
-            <Filter />
-          </CatgContext.Provider>
+          <Filter />
         </aside>
 
         <div className='category-wrapper'>
           {catgProducts.map((product, index) => {
-            return (
-              <ProductCard key={index} onAdd={onAdd} product={product} />
-              /* <div
-                className='product-card'
-                key={product.product_id}
-                id={product.product_id}>
-                <Link to={`/product/${product.product_id}`}>
-                  <img className='img-card' src={product.product_image} />
-                  <h3 className='title-card'>{product.product_name}</h3>
-                </Link>
-                <p>{product.product_brand}</p>
-                <p>{product.product_name}</p>
-                <p>{product.product_description}</p>
-                <p>${product.product_price}</p>
-
-                <button onClick={() => onAdd(product)}>Add to Cart</button>
-              </div> */
-            );
+            return <ProductCard key={index} onAdd={onAdd} product={product} />;
           })}
         </div>
       </div>

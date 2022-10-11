@@ -3,7 +3,7 @@ import { useState, useContext, useEffect } from "react";
 import { NavbarBrand } from "react-bootstrap";
 import Checkbox from "./Checkbox";
 
-import { CatgContext } from "../pages/Category";
+import { CategoryContext } from "../contexts/CategoryContext";
 
 const Filter = () => {
   const {
@@ -12,7 +12,7 @@ const Filter = () => {
     updatedCheckboxes,
     checkBoxType,
     catgProducts,
-  } = useContext(CatgContext);
+  } = useContext(CategoryContext);
 
   const [checkedBrand, setCheckedBrand] = useState([]);
   const [checkedType, setCheckedType] = useState([]);

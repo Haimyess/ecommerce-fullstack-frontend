@@ -8,6 +8,14 @@
 ------------CATEGORY-------------
 --------------------------------- */
 
+
+.header-category {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
 .category-title {
      margin-bottom: 2rem;
 }
