@@ -1,77 +1,66 @@
 /** @format */
 
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 
 import { CategoryContext } from "../contexts/CategoryContext";
 
 export default function Sort() {
   const { catgProducts, setCatgProducts } = useContext(CategoryContext);
+  // const [data, setData] = useState([]);
 
-  const [sort, setSort] = useState("asc");
-
-  //   const sortCompare = () => {
-  //     const asc =
-  //       a.product_name > b.product_name
-  //         ? 1
-  //         : a.product_name < b.product_name
-  //         ? -1
-  //         : 0;
-
-  //     const desc =
-  //       a.product_name < b.product_name
-  //         ? 1
-  //         : a.product_name > b.product_name
-  //         ? -1
-  //         : 0;
-  //   };
-
+  // console.log(data);
+  const [sortType, setSortType] = useState("asc");
   const handleSort = (value) => {
-    console.log(value);
-
-    setSort(value);
-
-    if (sort === "asc") {
-      const sortArr = [...catgProducts].sort((a, b) =>
+    setSortType(value);
+    if (sortType === "desc") {
+      const sortArrName = [...catgProducts].sort((a, b) =>
         a.product_name < b.product_name
           ? 1
           : a.product_name > b.product_name
           ? -1
           : 0
       );
-      setCatgProducts(sortArr);
+      setCatgProducts(sortArrName);
     }
-    if (sort === "desc") {
-      const sortArr = [...catgProducts].sort((a, b) =>
+    if (sortType === "asc") {
+      const sortArrName = [...catgProducts].sort((a, b) =>
         a.product_name > b.product_name
           ? 1
           : a.product_name < b.product_name
           ? -1
           : 0
       );
-      setCatgProducts(sortArr);
+      setCatgProducts(sortArrName);
     }
 
-    if (sort === "htl") {
-      const sortArr = [...catgProducts].sort((a, b) =>
-        a.product_price > b.product_price
+    if (sortType === "lth") {
+      const sortArrPrice = [...catgProducts].sort((a, b) => {
+        console.log(a.product_price);
+
+        return a.product_price > b.product_price
           ? 1
           : a.product_price < b.product_price
           ? -1
-          : 0
-      );
-      setCatgProducts(sortArr);
+          : 0;
+      });
+      setCatgProducts(sortArrPrice);
     }
-    if (sort === "lth") {
-      const sortArr = [...catgProducts].sort((a, b) =>
+
+    if (sortType === "htl") {
+      const sortArrPrice = [...catgProducts].sort((a, b) =>
         a.product_price < b.product_price
           ? 1
           : a.product_price > b.product_price
           ? -1
           : 0
       );
-      setCatgProducts(sortArr);
+      setCatgProducts(sortArrPrice);
     }
   };
+
+  useEffect(() => {
+    handleSort(sortType);
+  }, [sortType]);
 
   return (
     <select onChange={(e) => handleSort(e.target.value)}>
@@ -82,3 +71,28 @@ export default function Sort() {
     </select>
   );
 }
+
+//  const typesAs = {
+//         nameAs: "product_name",
+//         priceAs: "product_price",
+//       };
+// const typesDes = {
+//   nameDes: "product_name",
+//   priceDes: "product_price",
+// };
+
+// console.log(types["ascending"] === "asc");
+
+// const sortProperty = types[value];
+
+// const sortedAsc = [...catgProducts].sort(
+//   (a, b) => b[typesAs[value]] - a[typesAs[value]]
+// );
+
+// const sortedDesc = [...catgProducts].sort(
+//   (a, b) => b[sortProperty] - a[sortProperty]
+// );
+// console.log(sorted);
+// if(sortedType === "name" || "")
+
+//       sortedAsc.includes(('name' || "price") ? sortedAsc : sortedDesc)
