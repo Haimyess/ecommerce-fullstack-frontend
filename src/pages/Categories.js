@@ -23,6 +23,7 @@ function Categories() {
       {gridCategories.map((category) => {
         return (
           <Link
+            key={category.id}
             to={`/${category.name}`}
             className={`grid-item  ${category.class}`}>
             <span className='title-cat'>{category.name}</span>{" "}

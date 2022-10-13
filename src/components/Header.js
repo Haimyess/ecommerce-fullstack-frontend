@@ -56,30 +56,35 @@ function Header({ qty }) {
   const [show, setShow] = useContext(LoginModalContext);
   const { cart, setCart } = useContext(CartContext);
 
+  // const [clickTarget, setClickTarget] = useSatte('')
+
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   ///////////////////// Closing div when click outside in searchbar
   const searchDivRef = useRef();
 
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
+  console.log(isOpen);
 
   const handleDivBack = () => {
     setIsOpen(true);
   };
 
   useEffect(() => {
-    // document.addEventListener("click", handleClickOutside, true);
+    document.addEventListener("click", handleClickOutside, true);
     document.addEventListener("keydown", handleDivBack);
     // document.addEventListener("click", handleDivBack, true);
 
     document.addEventListener("change", handleClickOutside, true);
   }, []);
+  // }, [clickTarget]);
 
   const handleClickOutside = (e) => {
     if (!searchDivRef.current.contains(e.target)) {
       // console.log(e.target);
-      setIsOpen((val) => !val);
+      setIsOpen(false);
+      // setIsOpen((val) => !val);
     }
   };
 
@@ -131,7 +136,11 @@ function Header({ qty }) {
               </Nav.Link> */}
             </Nav>
 
-            <SearchBar searchDivRef={searchDivRef} isOpen={isOpen} />
+            <SearchBar
+              searchDivRef={searchDivRef}
+              isOpen={isOpen}
+              setIsOpen={setIsOpen}
+            />
             <div className='d-flex justify-content-md-center '>
               {/* <Link className='cart' to='/cart'>
                 Cart <span className='cart-badge'>({cartTotal()})</span>

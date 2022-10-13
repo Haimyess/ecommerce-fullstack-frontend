@@ -17,7 +17,13 @@ function PopularProducts({ onAdd }) {
     <div className='main-components-wrapper'>
       <div className='products-wrapper'>
         {products.slice(0, limitDisplay).map((product) => {
-          return <ProductCard onAdd={onAdd} product={product} />;
+          return (
+            <ProductCard
+              key={product.product_id}
+              onAdd={onAdd}
+              product={product}
+            />
+          );
 
           {
             /* <Testing product={product} />; */

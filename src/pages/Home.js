@@ -21,7 +21,7 @@ function Home({ onAdd }) {
       <div className='categories-main'>
         {categories.slice(0, 5).map((category) => {
           return (
-            <div className='category-home'>
+            <div className='category-home' key={category.id}>
               <Link className='link-category-home' to={category.link}>
                 <div className='image-container'>
                   <img className='category-img-home' src={category.image} />

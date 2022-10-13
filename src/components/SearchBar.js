@@ -5,7 +5,7 @@ import React, { useEffect, useState, useContext, useRef } from "react";
 import { link } from "../link";
 
 import { Form, FormControl, InputGroup } from "react-bootstrap/";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 // import OutsideClickHandler from "react-outside-click-handler";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -13,10 +13,11 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 import "../styles/searchbar.css";
 
-const SearchBar = ({ searchDivRef, isOpen }) => {
+const SearchBar = ({ searchDivRef, isOpen, setIsOpen }) => {
   const [searchState, setSearchState] = useState("");
 
   const [allProducts, setAllProducts] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     try {
@@ -35,13 +36,18 @@ const SearchBar = ({ searchDivRef, isOpen }) => {
   }, []);
 
   ////Here we are using values from user and we are going to fetch DB based on these values
-  const handleSearch = (e) => {
-    setSearchState(e.target.value);
-  };
+  // const handleSearch = (e) => {
+  //   setSearchState(e.target.value);
+  // };
 
   //////Getting
   const handleSubmit = (e) => {
     e.preventDefault();
+    // If language is correct, then sunmit form, if not, give an error message with the state. (LATER)
+    navigate(`/search?q=${searchState}`, {
+      state: { search: { searchState } },
+    });
+    setIsOpen(false);
   };
 
   const displayProducts = () => {
@@ -91,7 +97,8 @@ const SearchBar = ({ searchDivRef, isOpen }) => {
               type='search'
               placeholder='Search'
               aria-label='Search'
-              onChange={handleSearch}
+              onChange={(e) => setSearchState(e.target.value)}
+              onClick={() => setIsOpen((prev) => !prev)}
             />
             <div className='magnif-glass-container'>
               <FontAwesomeIcon
@@ -103,7 +110,7 @@ const SearchBar = ({ searchDivRef, isOpen }) => {
         </Form>
 
         <div
-          style={{ display: !isOpen ? "none" : "block" }}
+          style={{ display: isOpen ? "block" : "none" }}
           className='search-list'
           ref={searchDivRef}>
           {searchState !== "" ? displayProducts() : ""}
