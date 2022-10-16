@@ -86,7 +86,15 @@ function App() {
                 </ProductsProvider>
               }
             />
-            <Route path='/search' element={<SearchPage />} />
+
+            <Route
+              path='/search'
+              element={
+                <ProductsProvider>
+                  <SearchPage />{" "}
+                </ProductsProvider>
+              }
+            />
 
             <Route
               path='/cart'

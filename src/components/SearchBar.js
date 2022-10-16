@@ -44,7 +44,8 @@ const SearchBar = ({ searchDivRef, isOpen, setIsOpen }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // If language is correct, then sunmit form, if not, give an error message with the state. (LATER)
-    navigate(`/search?q=${searchState}`, {
+    navigate("/search", {
+      // navigate(`/search?q=${searchState}`, {
       state: { search: { searchState } },
     });
     setIsOpen(false);
