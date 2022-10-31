@@ -22,7 +22,9 @@ const SearchBar = ({ searchDivRef, isOpen, setIsOpen }) => {
   useEffect(() => {
     try {
       const getAllProducts = async () => {
-        const res = await fetch("/api/products/all");
+        const res = await fetch(
+          "https://ecommerce-backend-abgb.onrender.com/api/products/all"
+        );
         const data = await res.json();
         setAllProducts(data);
 

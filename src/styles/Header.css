@@ -52,10 +52,9 @@
   background-color: #093e8d;
 }
 
-/* .login-btn {
-  display: flex;
-  flex-direction: column;
-} */
+.login-btn {
+ cursor: pointer;
+}
 
 .color {
   color: #1363DF;

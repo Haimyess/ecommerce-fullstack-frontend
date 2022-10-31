@@ -11,7 +11,7 @@ import Testing from "./Testing";
 function PopularProducts({ onAdd }) {
   const [products, setProducts] = useContext(ProductsContext);
 
-  const limitDisplay = 3;
+  const limitDisplay = 4;
 
   return (
     <div className='main-components-wrapper'>
