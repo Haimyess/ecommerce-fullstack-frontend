@@ -8,6 +8,8 @@ import { CartContext } from "../contexts/CartContext";
 
 import { useForm } from "react-hook-form";
 
+import logo from "../media/images/Shopy-logo.png";
+
 import "../styles/checkout.css";
 
 import {
@@ -81,14 +83,21 @@ export default function Checkout() {
   // const name = getValues("firstName");
 
   return (
-    <div>
-      <header>
-        <p>Logo</p>
+    <div className='container'>
+      <header className='checkout-header '>
+        <Link to='/'>
+          <div>
+            <img className='logo-home' src={logo} alt='' />
+          </div>
+        </Link>
         <p>
-          <Link to='/cart'>Return To Cart</Link>
+          <Link className='return-cart' to='/cart'>
+            Return To Cart
+          </Link>
         </p>
       </header>
 
+      <h4 className='title'>Contact info</h4>
       <section className='checkout-wrapper'>
         <main className='form-wrapper'>
           <form
@@ -116,9 +125,9 @@ export default function Checkout() {
               navigate("/thanks");
               // setShow(true); // show modal
             })}>
-            <h4 className='title'>Contact info</h4>
             <div className='join-container'>
               <div className='grow-container'>
+                <label> First Name:</label>
                 <input
                   type='text'
                   placeholder='First name'
@@ -138,6 +147,7 @@ export default function Checkout() {
               </div>
 
               <div className='grow-container'>
+                <label> Last Name</label>
                 <input
                   className='join-margin'
                   type='text'
@@ -156,6 +166,7 @@ export default function Checkout() {
             </div>
 
             <div className='grow-container margin-bot'>
+              <label> Address: </label>
               <input
                 type='text'
                 placeholder='Address'
@@ -168,6 +179,7 @@ export default function Checkout() {
 
             <div className='join-container'>
               <div className='grow-container'>
+                <label> Email: </label>
                 <input
                   type='email'
                   placeholder='Email'
@@ -182,6 +194,7 @@ export default function Checkout() {
                 <p className='err-val-msg'> {errors.email?.message}</p>
               </div>
               <div className='grow-container'>
+                <label> Phone: </label>
                 <input
                   className='join-margin'
                   type='number'
@@ -202,6 +215,7 @@ export default function Checkout() {
             {/* <label>Card number</label> */}
             <div className='payment-container'>
               <div className='grow-container cardnumber-container'>
+                <label> Card Number: </label>
                 <input
                   type='text'
                   maxLength={16}
@@ -218,6 +232,7 @@ export default function Checkout() {
               </div>
               <div className='card-container'>
                 <div className='grow-container'>
+                  <label> Month: </label>
                   <input
                     type='number'
                     maxLength={2}
@@ -232,6 +247,7 @@ export default function Checkout() {
                   <p className='err-val-msg'>{errors.expmonth?.message}</p>
                 </div>
                 <div className='grow-container'>
+                  <label>Year: </label>
                   <input
                     type='number'
                     placeholder='YY'
@@ -246,6 +262,7 @@ export default function Checkout() {
                   <p className='err-val-msg'> {errors.expyear?.message}</p>
                 </div>
                 <div className='grow-container'>
+                  <label> CVV: </label>
                   <input
                     type='password'
                     placeholder='123'
@@ -269,7 +286,7 @@ export default function Checkout() {
             {/* <MDBCol md='4' className='mb-4'>
             <MDBCard className='mb-4'> */}
             <MDBCardHeader className='py-3'>
-              <h5 className='title'>Summary</h5>
+              <h5 className='summary-title'>Summary</h5>
             </MDBCardHeader>
 
             <MDBCardBody>
