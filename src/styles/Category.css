@@ -22,11 +22,10 @@
 
 .category-wrapper {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between ;
     flex-wrap: wrap;
     gap: 1.5rem;
     /* width: 90%; */
-    margin: 0 auto;
     height: fit-content;
 }
 .product-card {

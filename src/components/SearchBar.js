@@ -53,6 +53,12 @@ const SearchBar = ({ searchDivRef, isOpen, setIsOpen }) => {
     setIsOpen(false);
   };
 
+  const seeMoreFunction = () => {
+    navigate("/search", {
+      state: { search: { searchState } },
+    });
+  };
+
   const displayProducts = () => {
     ////////trying to display a div - Results not found
 
@@ -71,6 +77,7 @@ const SearchBar = ({ searchDivRef, isOpen, setIsOpen }) => {
               .includes(searchState.toLowerCase());
             // }
           })
+          .slice(0, 5)
           .map((product) => {
             return (
               <div key={product.product_id}>
@@ -86,6 +93,9 @@ const SearchBar = ({ searchDivRef, isOpen, setIsOpen }) => {
               </div>
             );
           })}
+        <button onClick={seeMoreFunction} className='see-more' to='/search'>
+          See more..
+        </button>
       </div>
     );
   };

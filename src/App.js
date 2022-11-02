@@ -90,9 +90,11 @@ function App() {
             <Route
               path='/search'
               element={
-                <ProductsProvider>
-                  <SearchPage />{" "}
-                </ProductsProvider>
+                <CategoryProvider>
+                  <ProductsProvider>
+                    <SearchPage />{" "}
+                  </ProductsProvider>
+                </CategoryProvider>
               }
             />
 

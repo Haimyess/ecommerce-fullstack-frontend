@@ -3,11 +3,14 @@
 import React, { useState, useContext, useEffect } from "react";
 import ProductCard from "../components/ProductCard";
 
-import Checkbox from "../components/Checkbox";
+// import Checkbox from "../components/Checkbox";
+
+import "../styles/searchpage.css";
 
 import { ProductsContext } from "../contexts/ProductsContext";
 
 import { useLocation } from "react-router-dom";
+// import Filter from "../components/Filter";
 
 const SearchPage = () => {
   const [products, setProducts] = useContext(ProductsContext);
@@ -59,6 +62,7 @@ const SearchPage = () => {
 
     // console.log(filter);
   };
+
   // useEffect(() => {
   //   displaySearchProducts(term);
   // }, [term]);
@@ -98,7 +102,9 @@ const SearchPage = () => {
 
           {/* Map */}
 
-          <div>
+          {/* <Filter /> */}
+
+          <div className='display-products'>
             {displaySearchProducts()}
             {/* {searchProducts.map((product) => {
               return <ProductCard key={product.product_id} product={product} />;
