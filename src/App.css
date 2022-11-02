@@ -8,7 +8,7 @@
 }
 .app-container {
   
-  width: 75%;
+  width: 80%;
   margin: 0 auto;
   padding: 6rem 0;
 }
@@ -21,6 +21,10 @@
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
+}
+
+.container {
+  max-width: 1390px;
 }
 
 .App-header {
@@ -76,3 +80,4 @@
     transform: rotate(360deg);
   }
 }
+
