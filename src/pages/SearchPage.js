@@ -13,7 +13,7 @@ import { useLocation } from "react-router-dom";
 // import Filter from "../components/Filter";
 
 const SearchPage = () => {
-  const [products, setProducts] = useContext(ProductsContext);
+  const { products, setProducts } = useContext(ProductsContext);
 
   const location = useLocation();
 
