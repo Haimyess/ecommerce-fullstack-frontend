@@ -3,6 +3,9 @@
 import { useState, useEffect, useContext } from "react";
 import { Link, useParams } from "react-router-dom";
 
+import Skeleton from "@mui/material/Skeleton";
+import Stack from "@mui/material/Stack";
+
 import { link } from "../link";
 
 import { CartContext } from "../contexts/CartContext";
@@ -24,6 +27,10 @@ export const Category = ({ onAdd, qty }) => {
   const { quantity, setQuantity } = qty;
   // console.log(quantity);
   const { cart, setCart } = useContext(CartContext);
+
+  const [loading, setLoading] = useState(true);
+
+  const skeletonQuantity = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
   // console.log("category", cart);
   /////////////////////////////////////////////////
   const {
@@ -36,6 +43,8 @@ export const Category = ({ onAdd, qty }) => {
     checkBoxType,
     setCheckBoxType,
   } = useContext(CategoryContext);
+
+  console.log(catgProducts);
 
   const [searchArray, setSearchArray] = useState([]);
 
@@ -100,6 +109,8 @@ export const Category = ({ onAdd, qty }) => {
       setUpdatedCheckboxes(data);
       setCheckBoxBrand(uniqueBrands);
       setCheckBoxType(uniqueTypes);
+
+      setLoading(false);
     } catch (err) {
       console.log(err);
     }
@@ -123,9 +134,33 @@ export const Category = ({ onAdd, qty }) => {
         </aside>
 
         <div className='category-wrapper'>
-          {catgProducts.map((product, index) => {
-            return <ProductCard key={index} onAdd={onAdd} product={product} />;
-          })}
+          {loading
+            ? skeletonQuantity.map((skeleton) => {
+                return (
+                  <Stack key={skeleton} spacing={1}>
+                    {/* For variant="text", adjust the height via font-size */}
+
+                    {/* For other variants, adjust the size with `width` and `height` */}
+                    <Skeleton variant='rounded' width={270} height={150} />
+                    {/* <Skeleton
+                      variant='text'
+                      width={270}
+                      height={120}
+                      sx={{ fontSize: "1rem" }}
+                    /> */}
+                    {/* <Skeleton variant='text' sx={{ fontSize: "1rem" }} /> */}
+
+                    <Skeleton variant='rectangular' width={200} height={20} />
+                    <Skeleton variant='rectangular' width={50} height={20} />
+                    <Skeleton variant='rectangular' width={200} height={30} />
+                  </Stack>
+                );
+              })
+            : catgProducts.map((product, index) => {
+                return (
+                  <ProductCard key={index} onAdd={onAdd} product={product} />
+                );
+              })}
         </div>
       </div>
     </div>
