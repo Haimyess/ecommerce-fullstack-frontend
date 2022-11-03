@@ -80,22 +80,30 @@ const SearchBar = ({ searchDivRef, isOpen, setIsOpen }) => {
           .slice(0, 5)
           .map((product) => {
             return (
-              <div key={product.product_id}>
-                <Link to={`/product/${product.product_id}`}>
-                  {product.product_name}
-
+              <div className='search-div' key={product.product_id}>
+                <Link
+                  className='info-link'
+                  to={`/product/${product.product_id}`}
+                  onClick={() => setIsOpen(false)}>
                   <img
                     className='img-search-product'
-                    src={product.product_image}></img>
-                </Link>
+                    src={product.product_image}
+                  />
+                  <p> {product.product_name}</p>
 
-                <div>{product.product_price}</div>
+                  <div>${product.product_price}</div>
+                </Link>
               </div>
             );
           })}
-        <button onClick={seeMoreFunction} className='see-more' to='/search'>
-          See more..
-        </button>
+        <div className='middle'>
+          <button
+            onClick={seeMoreFunction}
+            className='product-btn '
+            to='/search'>
+            See more..
+          </button>
+        </div>
       </div>
     );
   };

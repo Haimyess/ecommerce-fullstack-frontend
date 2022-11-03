@@ -10,6 +10,7 @@ export const ProductsContext = createContext();
 
 export const ProductsProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
   //   const [filtered, setFiltered] = useState([]);
 
   const params = useParams();
@@ -24,6 +25,8 @@ export const ProductsProvider = ({ children }) => {
         const data = await res.json();
 
         setProducts(data);
+        setLoading(false);
+
         // console.log(products);
         // setFiltered(data);
       } catch (err) {
@@ -35,7 +38,7 @@ export const ProductsProvider = ({ children }) => {
   });
 
   return (
-    <ProductsContext.Provider value={[products, setProducts]}>
+    <ProductsContext.Provider value={{ products, setProducts, loading }}>
       {/* value={{ products, setProducts, filtered, setFiltered }}> */}
       {children}
     </ProductsContext.Provider>

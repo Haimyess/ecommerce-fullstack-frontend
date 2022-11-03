@@ -47,13 +47,16 @@ function Product({ qty }) {
 
   useEffect(() => {
     const getProduct = async () => {
-      const res = await fetch(`/api/products/product/${params.id}`);
+      const res = await fetch(
+        `https://ecommerce-backend-abgb.onrender.com/api/products/product/${params.id}`
+      );
+      // const res = await fetch(`/api/products/product/${params.id}`);
       const data = await res.json();
 
       setProduct(data);
     };
     getProduct();
-  }, []);
+  }, [params]);
   return (
     <div>
       {product.map((singleProduct) => {

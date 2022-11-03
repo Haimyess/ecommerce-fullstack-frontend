@@ -18,6 +18,7 @@ const SearchPage = () => {
   const location = useLocation();
 
   const term = location.state.search.searchState;
+
   // console.log(term);
   // console.log(products.filter((item) => item.product_name.includes(term);
 
