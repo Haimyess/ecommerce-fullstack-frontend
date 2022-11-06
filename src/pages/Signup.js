@@ -3,7 +3,6 @@
 import React, { useState, useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
 
-import link from "../link";
 // import { ShowContext } from "./Header";
 import { LoginModalContext } from "../contexts/LoginModalContext";
 import LoginModal from "../components/LogInModal";
@@ -12,7 +11,7 @@ import "../styles/signup.css";
 
 const SignUp = () => {
   const [show, setShow] = useContext(LoginModalContext);
-  console.log(show);
+  // console.log(show);
   // console.log(show);
   const [errorMsg, setErrorMsg] = useState("");
   const [users, setUsers] = useState([]);
@@ -22,12 +21,13 @@ const SignUp = () => {
   const [user_password, setUserPassword] = useState([]);
 
   // console.log(userValues);
+  console.log(users);
   const navigate = useNavigate();
 
   const postUser = (e) => {
     e.preventDefault();
 
-    fetch("${link}/api/connection/signup", {
+    fetch("https://ecommerce-backend-abgb.onrender.com/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
