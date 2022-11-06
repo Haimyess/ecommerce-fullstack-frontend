@@ -52,8 +52,8 @@ const SignUp = () => {
         console.log(err);
       });
 
-    // navigate("/");
-    // setShow(true); // show modal
+    navigate("/");
+    setShow(true); // show modal
   };
 
   const handleRegisterModal = () => {
