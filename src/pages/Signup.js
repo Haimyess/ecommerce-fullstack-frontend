@@ -27,7 +27,7 @@ const SignUp = () => {
   const postUser = (e) => {
     e.preventDefault();
 
-    fetch("https://ecommerce-backend-abgb.onrender.com/", {
+    fetch("https://ecommerce-backend-abgb.onrender.com/api/auth/signup", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
