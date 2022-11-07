@@ -3,8 +3,15 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
 
 import logo from "../media/images/Shopy-logo.png";
+import "../styles/Header.css";
+import { Link } from "react-router-dom";
 
 import LoginModal from "../components/LogInModal";
+import SearchBar from "./SearchBar";
+
+import { LoginModalContext } from "../contexts/LoginModalContext";
+import { CartContext } from "../contexts/CartContext";
+import { LoginContext } from "../contexts/LoginContext";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -15,13 +22,6 @@ import {
 
 import Badge from "@mui/material/Badge";
 
-import { LoginModalContext } from "../contexts/LoginModalContext";
-import { CartContext } from "../contexts/CartContext";
-
-import SearchBar from "./SearchBar";
-import "../styles/Header.css";
-import { Link } from "react-router-dom";
-
 import {
   Navbar,
   Container,
@@ -30,10 +30,33 @@ import {
   FormControl,
   Button,
 } from "react-bootstrap/";
+
+import Box from "@mui/material/Box";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
+import Divider from "@mui/material/Divider";
+import InboxIcon from "@mui/icons-material/Inbox";
+import DraftsIcon from "@mui/icons-material/Drafts";
 // import Catalogue from "../pages/Catalogue";
 
 function Header({ qty }) {
   const { quantity, setQuantity } = qty;
+
+  const { isLoggedIn, user } = useContext(LoginContext);
+  console.log(user);
+
+  const userName = user?.map((name) => {
+    return name.user_firstname;
+  });
+
+  // const [userName, setUserName] = useState("");
+
+  const [showDrop, setShowDrop] = useState(false);
+
+  // console.log(user[0].user_firstname);
 
   // console.log(quantity);
 
@@ -65,7 +88,7 @@ function Header({ qty }) {
   const searchDivRef = useRef();
 
   const [isOpen, setIsOpen] = useState(false);
-  console.log(isOpen);
+  // console.log(isOpen);
 
   const handleDivBack = () => {
     setIsOpen(true);
@@ -153,10 +176,63 @@ function Header({ qty }) {
               </Link>{" "}
               {<LoginModal handleClose={handleClose} />}
               {/* <Button onClick={handleShow} variant='outline-success'></Button> */}
-              <div onClick={handleShow} className='login-btn color'>
-                <FontAwesomeIcon icon={faUser} size='xl' />
-                <span> Login</span>
-              </div>
+              {isLoggedIn ? (
+                <div>
+                  <button onClick={() => setShowDrop(!showDrop)}>
+                    {`Hello, ${userName}`}
+                  </button>
+
+                  {showDrop && (
+                    <Box
+                      sx={{
+                        width: "100%",
+                        maxWidth: 360,
+                        bgcolor: "background.paper",
+                      }}>
+                      <nav aria-label='main mailbox folders'>
+                        <List>
+                          <ListItem disablePadding>
+                            <ListItemButton>
+                              <ListItemIcon>
+                                <InboxIcon />
+                              </ListItemIcon>
+                              <ListItemText primary='Inbox' />
+                            </ListItemButton>
+                          </ListItem>
+                          <ListItem disablePadding>
+                            <ListItemButton>
+                              <ListItemIcon>
+                                <DraftsIcon />
+                              </ListItemIcon>
+                              <ListItemText primary='Drafts' />
+                            </ListItemButton>
+                          </ListItem>
+                        </List>
+                      </nav>
+                      <Divider />
+                      <nav aria-label='secondary mailbox folders'>
+                        <List>
+                          <ListItem disablePadding>
+                            <ListItemButton>
+                              <ListItemText primary='Trash' />
+                            </ListItemButton>
+                          </ListItem>
+                          <ListItem disablePadding>
+                            <ListItemButton component='a' href='#simple-list'>
+                              <ListItemText primary='Spam' />
+                            </ListItemButton>
+                          </ListItem>
+                        </List>
+                      </nav>
+                    </Box>
+                  )}
+                </div>
+              ) : (
+                <div onClick={handleShow} className='login-btn color'>
+                  <FontAwesomeIcon icon={faUser} size='xl' />
+                  <span> Login</span>
+                </div>
+              )}
             </div>
             {/* <FontAwesomeIcon icon='fa-solid fa-cart-shopping' /> */}
           </Navbar.Collapse>

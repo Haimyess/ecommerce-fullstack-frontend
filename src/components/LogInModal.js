@@ -6,35 +6,44 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import { LoginModalContext } from "../contexts/LoginModalContext";
+import { LoginContext } from "../contexts/LoginContext";
 
 function LoginModal({ handleClose }) {
+  console.log(handleClose);
   // console.log(typeof show);
   const [show, setShow] = useContext(LoginModalContext);
+
+  console.log(show);
 
   const navigate = useNavigate();
 
   const [user_email, setUserEmail] = useState("");
   const [user_password, setUserPassword] = useState("");
+  const { user, setUser, setIsLoggedIn, isLoggedIn } = useContext(LoginContext);
 
+  console.log(isLoggedIn);
   console.log("email:", user_email, "pass:", user_password);
 
   const handleLogin = (e) => {
     e.preventDefault();
 
+    // fetch("/api/auth/", {
     fetch("https://ecommerce-backend-abgb.onrender.com/api/auth/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        user_email,
-        user_password,
+        user_email: user_email,
+        user_password: user_password,
       }),
     })
       .then((res) => res.json())
-      // .then((data) => {
-      //   setUsers(data);
-      // })
+      .then((data) => {
+        setUser(data);
+        setIsLoggedIn(true);
+        if (isLoggedIn) setShow(false);
+      })
       .catch((err) => {
         console.log(err);
       });

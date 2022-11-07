@@ -82,6 +82,7 @@ export const Category = ({ onAdd, qty }) => {
       const res = await fetch(
         `https://ecommerce-backend-abgb.onrender.com/api/products/${params.type}`
       );
+      // const res = await fetch(`/api/products/${params.type}`);
       const data = await res.json();
       ////////////////////////////////////////////
 

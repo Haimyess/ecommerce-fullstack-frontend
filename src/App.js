@@ -32,6 +32,7 @@ import "./App.css";
 // importing this file we are able to access the variables globally, in each on eof the stylesheets that we have.
 import "./styles/variables.css";
 import { CategoryProvider } from "./contexts/CategoryContext";
+import { LoginProvider } from "../src/contexts/LoginContext";
 
 function App() {
   const { cart, setCart } = useContext(CartContext);
@@ -71,73 +72,75 @@ function App() {
 
   return (
     <div className='App'>
-      <LoginModalProvider>
-        <Routes>
-          <Route
-            path='/'
-            element={<SharedLayout qty={{ quantity, setQuantity }} />}>
+      <LoginProvider>
+        <LoginModalProvider>
+          <Routes>
             <Route
-              index
-              element={
-                <ProductsProvider>
-                  <Home
-                  //  onAdd={handleAdd}
-                  />
-                </ProductsProvider>
-              }
-            />
-
-            <Route
-              path='/search'
-              element={
-                <CategoryProvider>
+              path='/'
+              element={<SharedLayout qty={{ quantity, setQuantity }} />}>
+              <Route
+                index
+                element={
                   <ProductsProvider>
-                    <SearchPage />{" "}
+                    <Home
+                    //  onAdd={handleAdd}
+                    />
                   </ProductsProvider>
-                </CategoryProvider>
-              }
-            />
+                }
+              />
 
-            <Route
-              path='/cart'
-              element={
-                <Cart
-                  // onAdd={handleAdd}
-                  onMinus={handleRemove}
-                  qty={{ quantity, setQuantity }}
-                />
-              }
-            />
-            <Route path='/catalogue' element={<Catalogue />} />
-            <Route
-              path='/:type'
-              element={
-                <CategoryProvider>
-                  {" "}
-                  <Category
+              <Route
+                path='/search'
+                element={
+                  <CategoryProvider>
+                    <ProductsProvider>
+                      <SearchPage />{" "}
+                    </ProductsProvider>
+                  </CategoryProvider>
+                }
+              />
+
+              <Route
+                path='/cart'
+                element={
+                  <Cart
                     // onAdd={handleAdd}
+                    onMinus={handleRemove}
                     qty={{ quantity, setQuantity }}
                   />
-                </CategoryProvider>
-              }
-            />
-            <Route
-              path='/product/:id'
-              element={
-                <Product
-                  //  onAdd={handleAdd}
-                  qty={{ quantity, setQuantity }}
-                />
-              }
-            />
-            <Route path='*' element={<NotFound />} />
-          </Route>
+                }
+              />
+              <Route path='/catalogue' element={<Catalogue />} />
+              <Route
+                path='/:type'
+                element={
+                  <CategoryProvider>
+                    {" "}
+                    <Category
+                      // onAdd={handleAdd}
+                      qty={{ quantity, setQuantity }}
+                    />
+                  </CategoryProvider>
+                }
+              />
+              <Route
+                path='/product/:id'
+                element={
+                  <Product
+                    //  onAdd={handleAdd}
+                    qty={{ quantity, setQuantity }}
+                  />
+                }
+              />
+              <Route path='*' element={<NotFound />} />
+            </Route>
 
-          <Route path='/signup' element={<Signup />} />
-          <Route path='/checkout' element={<Checkout />} />
-          <Route path='/thanks' element={<ThanksPage />} />
-        </Routes>
-      </LoginModalProvider>
+            <Route path='/signup' element={<Signup />} />
+            <Route path='/checkout' element={<Checkout />} />
+            <Route path='/thanks' element={<ThanksPage />} />
+          </Routes>
+        </LoginModalProvider>
+      </LoginProvider>
     </div>
   );
 }

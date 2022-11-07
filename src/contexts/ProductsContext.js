@@ -21,6 +21,7 @@ export const ProductsProvider = ({ children }) => {
         const res = await fetch(
           "https://ecommerce-backend-abgb.onrender.com/api/products/all"
         );
+        // const res = await fetch("/api/products/all");
         // const res = await fetch(`/api/products/${params.type}`);
         const data = await res.json();
 
