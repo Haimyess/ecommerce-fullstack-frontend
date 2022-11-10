@@ -46,11 +46,11 @@ function Header({ qty }) {
   const { quantity, setQuantity } = qty;
 
   const { isLoggedIn, user } = useContext(LoginContext);
-  console.log(user);
+  // console.log(user);
 
-  const userName = user?.map((name) => {
-    return name.user_firstname;
-  });
+  // const userName = user?.map((name) => {
+  //   return name.user_firstname;
+  // });
 
   // const [userName, setUserName] = useState("");
 
@@ -179,7 +179,10 @@ function Header({ qty }) {
               {isLoggedIn ? (
                 <div>
                   <button onClick={() => setShowDrop(!showDrop)}>
-                    {`Hello, ${userName}`}
+                    {`Hello, ${
+                      user.length > 0 &&
+                      user.map((userName) => userName.user_firstname)
+                    }`}
                   </button>
 
                   {showDrop && (

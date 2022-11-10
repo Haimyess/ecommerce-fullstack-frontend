@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
@@ -8,53 +8,108 @@ import Modal from "react-bootstrap/Modal";
 import { LoginModalContext } from "../contexts/LoginModalContext";
 import { LoginContext } from "../contexts/LoginContext";
 
-function LoginModal({ handleClose }) {
-  console.log(handleClose);
-  // console.log(typeof show);
-  const [show, setShow] = useContext(LoginModalContext);
+import "../styles/loginmodal.css";
+import { faTruckLoading } from "@fortawesome/free-solid-svg-icons";
 
-  console.log(show);
+function LoginModal({ handleClose }) {
+  const [show, setShow] = useContext(LoginModalContext);
 
   const navigate = useNavigate();
 
   const [user_email, setUserEmail] = useState("");
+  const [loading, setLoading] = useState(false);
   const [user_password, setUserPassword] = useState("");
   const { user, setUser, setIsLoggedIn, isLoggedIn } = useContext(LoginContext);
+  const [disabled, setDisabled] = useState(true);
 
-  console.log(isLoggedIn);
-  console.log("email:", user_email, "pass:", user_password);
+  const [errMsg, setErrMsg] = useState("");
+  console.log(errMsg);
+  console.log(user);
 
-  const handleLogin = (e) => {
-    e.preventDefault();
+  console.log(show);
+  // console.log(isLoggedIn);
+  // console.log(user);
+
+  // console.log(isLoggedIn);
+  // console.log("email:", user_email, "pass:", user_password);
+
+  const handleLogin = async () => {
+    // e.preventDefault();
 
     // fetch("/api/auth/", {
-    fetch("https://ecommerce-backend-abgb.onrender.com/api/auth/", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        user_email: user_email,
-        user_password: user_password,
-      }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setUser(data);
+    // "https://ecommerce-backend-abgb.onrender.com/api/auth/",
+    try {
+      const res = await fetch(
+        "https://ecommerce-backend-abgb.onrender.com/api/auth/",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            user_email: user_email,
+            user_password: user_password,
+          }),
+        }
+      );
+
+      const data = await res.json();
+      // Having the data, we show stored user and close the modal and set the status to logged in and change the navbar
+      // setLoading(true);
+      // Storing the user
+      setUser(data);
+
+      if (data.notexist) {
+        setErrMsg(data.notexist);
+        setShow(true);
+        setIsLoggedIn(false);
+      } else {
+        setShow(false);
         setIsLoggedIn(true);
-        if (isLoggedIn) setShow(false);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+      }
+
+      if (data.msg) {
+        setErrMsg(data.msg);
+        setShow(true);
+        setIsLoggedIn(false);
+      } else {
+        setShow(false);
+        setIsLoggedIn(true);
+      }
+
+      // setLoading(false);
+
+      // Setting user as logged in
+    } catch (err) {
+      // If the password or email are wrong, we will show an error message and the modal should not close nor set the islogged in to true.
+      console.log(err);
+      // setErrMsg(err);
+    }
+
+    // setIsLoggedIn(true);
+    // setShow(false);
 
     // navigate("/");
     // setShow(true); // show modal
   };
 
+  // useEffect(() => {
+  //   handleLogin();
+  // }, []);
+
+  // const handleState = () => {
+
+  // };
+
   return (
     <>
-      <Modal onSubmit={handleLogin} show={show} onHide={handleClose}>
+      <Modal
+        onSubmit={(e) => {
+          handleLogin();
+          e.preventDefault();
+        }}
+        show={show}
+        onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Sign in</Modal.Title>
         </Modal.Header>
@@ -68,11 +123,11 @@ function LoginModal({ handleClose }) {
                 value={user_email}
                 onChange={(e) => setUserEmail(e.target.value)}
               />
+              {errMsg} <br />
               <Form.Text className='text-muted'>
                 We'll never share your email with anyone else.
               </Form.Text>
             </Form.Group>
-
             <Form.Group className='mb-3' controlId='formBasicPassword'>
               <Form.Label>Password</Form.Label>
               <Form.Control
@@ -94,7 +149,14 @@ function LoginModal({ handleClose }) {
               </Link>
             </p>
 
-            <Button variant='primary' type='submit'>
+            {/* {setErrMsg && <p>Wrong Email or password, please try again.</p>} */}
+            {loading ? <p>Loading..</p> : ""}
+            <Button
+              // onClick={() => setShow(false)}
+              className='submit-btn'
+              variant='primary'
+              type='submit'
+              disabled={!user_email || !user_password ? true : false}>
               Login
             </Button>
           </Form>
