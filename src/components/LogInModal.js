@@ -22,16 +22,17 @@ function LoginModal({ handleClose }) {
   const { user, setUser, setIsLoggedIn, isLoggedIn } = useContext(LoginContext);
   const [disabled, setDisabled] = useState(true);
 
-  const [errMsg, setErrMsg] = useState("");
-  console.log(errMsg);
-  console.log(user);
+  // const [errEmail, setErrEmail] = useState("");
+  // const [errPass, setErrPass] = useState("");
 
-  console.log(show);
+  const [errMsg, setErrMsg] = useState("");
+  // const [errState, setErrState] = useState(false);
+
   // console.log(isLoggedIn);
   // console.log(user);
 
   // console.log(isLoggedIn);
-  // console.log("email:", user_email, "pass:", user_password);
+  // console.log("email:", errEmail, "pass:", errPass);
 
   const handleLogin = async () => {
     // e.preventDefault();
@@ -54,28 +55,42 @@ function LoginModal({ handleClose }) {
       );
 
       const data = await res.json();
+      console.log(data);
       // Having the data, we show stored user and close the modal and set the status to logged in and change the navbar
       // setLoading(true);
       // Storing the user
       setUser(data);
 
-      if (data.notexist) {
-        setErrMsg(data.notexist);
+      if (data.errMsg) {
+        setErrMsg(data.errMsg);
+        setShow(true);
+        setIsLoggedIn(false);
+      } else if (data.msgPass) {
+        setErrMsg(data.errMsg);
         setShow(true);
         setIsLoggedIn(false);
       } else {
         setShow(false);
         setIsLoggedIn(true);
+        setErrMsg("");
+        setUserEmail("");
+        setUserPassword("");
       }
 
-      if (data.msg) {
-        setErrMsg(data.msg);
-        setShow(true);
-        setIsLoggedIn(false);
-      } else {
-        setShow(false);
-        setIsLoggedIn(true);
-      }
+      // if (data.notexist) {
+      //   setErrEmail(data.notexist);
+      //   setShow(true);
+      //   setIsLoggedIn(false);
+      // } else if (data.msgPass) {
+      //   setErrPass(data.msgPass);
+      //   setShow(true);
+      //   setIsLoggedIn(false);
+      // } else if (!data.notExist) {
+      //   setErrEmail("");
+      // } else {
+      //   setShow(false);
+      //   setIsLoggedIn(true);
+      // }
 
       // setLoading(false);
 
@@ -115,6 +130,8 @@ function LoginModal({ handleClose }) {
         </Modal.Header>
         <Modal.Body>
           <Form>
+            {/* Error message */}
+            <p className='err-msg'>{errMsg}</p>
             <Form.Group className='mb-3' controlId='formBasicEmail'>
               <Form.Label>Email address</Form.Label>
               <Form.Control
@@ -123,7 +140,7 @@ function LoginModal({ handleClose }) {
                 value={user_email}
                 onChange={(e) => setUserEmail(e.target.value)}
               />
-              {errMsg} <br />
+              {/* {errEmail} <br /> */}
               <Form.Text className='text-muted'>
                 We'll never share your email with anyone else.
               </Form.Text>
@@ -137,6 +154,7 @@ function LoginModal({ handleClose }) {
                 onChange={(e) => setUserPassword(e.target.value)}
               />
             </Form.Group>
+            {/* {errPass} */}
 
             <p>
               Don't have an account?

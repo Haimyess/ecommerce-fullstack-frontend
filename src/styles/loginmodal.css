@@ -3,6 +3,10 @@
     background-color: black !important
 
 }
+
+.err-msg {
+    color: red;
+}
 /* 
 .submit-btn {
     background-color: green;

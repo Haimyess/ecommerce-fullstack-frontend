@@ -60,3 +60,14 @@
   color: #1363DF;
 
 }
+
+.css-cveggr-MuiListItemIcon-root {
+ min-width: 20px !important;
+}
+
+.avatar-container{
+display: flex;
+align-items: center;
+justify-content: center;
+flex-direction: row;
+}

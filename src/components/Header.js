@@ -2,6 +2,8 @@
 
 import React, { useState, useEffect, useRef, useContext } from "react";
 
+import Avatar from "@mui/material/Avatar";
+
 import logo from "../media/images/Shopy-logo.png";
 import "../styles/Header.css";
 import { Link } from "react-router-dom";
@@ -18,6 +20,7 @@ import {
   faBarsStaggered,
   faCartShopping,
   faUser,
+  faRightFromBracket,
 } from "@fortawesome/free-solid-svg-icons";
 
 import Badge from "@mui/material/Badge";
@@ -45,7 +48,7 @@ import DraftsIcon from "@mui/icons-material/Drafts";
 function Header({ qty }) {
   const { quantity, setQuantity } = qty;
 
-  const { isLoggedIn, user } = useContext(LoginContext);
+  const { isLoggedIn, setIsLoggedIn, user } = useContext(LoginContext);
   // console.log(user);
 
   // const userName = user?.map((name) => {
@@ -178,51 +181,34 @@ function Header({ qty }) {
               {/* <Button onClick={handleShow} variant='outline-success'></Button> */}
               {isLoggedIn ? (
                 <div>
-                  <button onClick={() => setShowDrop(!showDrop)}>
-                    {`Hello, ${
-                      user.length > 0 &&
-                      user.map((userName) => userName.user_firstname)
-                    }`}
-                  </button>
-
+                  <div className='avatar-container'>
+                    <Avatar onClick={() => setShowDrop(!showDrop)}>
+                      {user.map((user) => {
+                        return user.user_firstname.slice(0, 1);
+                      })}
+                      {/* {`Hello, ${
+                        user.length > 0 &&
+                        user.map((userName) => userName.user_firstname)
+                      }`} */}
+                    </Avatar>
+                  </div>
                   {showDrop && (
                     <Box
                       sx={{
                         width: "100%",
                         maxWidth: 360,
                         bgcolor: "background.paper",
+                        position: "absolute",
                       }}>
                       <nav aria-label='main mailbox folders'>
                         <List>
                           <ListItem disablePadding>
-                            <ListItemButton>
+                            <ListItemButton
+                              onClick={() => setIsLoggedIn(false)}>
                               <ListItemIcon>
-                                <InboxIcon />
+                                <FontAwesomeIcon icon={faRightFromBracket} />
                               </ListItemIcon>
-                              <ListItemText primary='Inbox' />
-                            </ListItemButton>
-                          </ListItem>
-                          <ListItem disablePadding>
-                            <ListItemButton>
-                              <ListItemIcon>
-                                <DraftsIcon />
-                              </ListItemIcon>
-                              <ListItemText primary='Drafts' />
-                            </ListItemButton>
-                          </ListItem>
-                        </List>
-                      </nav>
-                      <Divider />
-                      <nav aria-label='secondary mailbox folders'>
-                        <List>
-                          <ListItem disablePadding>
-                            <ListItemButton>
-                              <ListItemText primary='Trash' />
-                            </ListItemButton>
-                          </ListItem>
-                          <ListItem disablePadding>
-                            <ListItemButton component='a' href='#simple-list'>
-                              <ListItemText primary='Spam' />
+                              <ListItemText primary='Logout' />
                             </ListItemButton>
                           </ListItem>
                         </List>

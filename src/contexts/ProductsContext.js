@@ -36,7 +36,7 @@ export const ProductsProvider = ({ children }) => {
     };
     getProducts();
     // console.log(products);
-  });
+  }, []);
 
   return (
     <ProductsContext.Provider value={{ products, setProducts, loading }}>
